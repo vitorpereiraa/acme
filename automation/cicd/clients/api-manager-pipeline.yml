@@ -1,0 +1,40 @@
+trigger: none
+
+parameters:
+  - name: env
+    displayName: Environment
+    type: string
+    default: dev
+
+  - name: minReplicas
+    displayName: MinReplicas
+    type: number
+    default: 1
+
+  - name: maxReplicas
+    displayName: MaxReplicas
+    type: number
+    default: 2
+
+resources:
+  repositories:
+    - repository: pipeline
+      type: git
+      ref: refs/heads/master
+      name: automation
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - template: cicd/templates/variables/global.yml@pipeline
+
+stages:
+  - template: cicd/templates/stages/deploy.yml@pipeline
+    parameters:
+      repo: apim
+      branch: master
+      env: ${{ parameters.env }}
+      minReplicas: ${{ parameters.minReplicas }}
+      maxReplicas: ${{ parameters.maxReplicas }}
+      targetPort: 9443

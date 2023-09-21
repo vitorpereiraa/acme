@@ -1,0 +1,35 @@
+parameters:
+  - name: repo 
+    type: string
+
+  - name: branch 
+    type: string
+
+  - name: env 
+    type: string
+
+  - name: isFeatureBranch 
+    type: string
+
+  - name: isJava
+    type: string
+
+  - name: isDotnet
+    type: string
+
+stages:
+  - template: templates/stages/build.yml
+    parameters:
+      repo: ${{ parameters.repo }}
+      branch: ${{ parameters.branch }}
+      env: ${{ parameters.env }}
+      isFeatureBranch: ${{ parameters.isFeatureBranch }}
+      isJava: ${{ parameters.isJava }}
+      isDotnet: ${{ parameters.isDotnet }}
+
+  - ${{ if eq(parameters.isFeatureBranch , false) }}: 
+    - template: templates/stages/deploy.yml
+      parameters:
+        repo: ${{ parameters.repo }}
+        branch: ${{ parameters.branch }}
+        env: ${{ parameters.env }}

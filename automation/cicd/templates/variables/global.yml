@@ -1,0 +1,9 @@
+variables:
+
+  repo: ${{ variables['Build.Repository.Name'] }}
+  branch: ${{ variables['Build.SourceBranch'] }}
+  isFeatureBranch: ${{ contains(variables.branch, 'feature') }} 
+
+  # Variables for dependency caching 
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'

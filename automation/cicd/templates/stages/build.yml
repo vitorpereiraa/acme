@@ -1,0 +1,64 @@
+parameters:
+  - name: repo
+    type: string
+
+  - name: branch
+    type: string
+
+  - name: env
+    type: string
+
+  - name: isFeatureBranch
+    type: string
+
+  - name: isJava
+    type: string
+
+  - name: isDotnet
+    type: string
+
+stages:
+  - stage:
+    displayName: Build ${{ parameters.repo }}
+    jobs:
+      - job:
+        displayName: Build
+        steps:
+          - template: ../steps/checkout.yml
+            parameters:
+              repo: ${{ parameters.repo }}
+              branch: ${{ parameters.branch }}
+
+          - ${{ if eq(parameters.isJava , true) }}:
+            - task: Cache@2
+              inputs:
+                key: 'maven | ${{ parameters.repo }}' 
+                path: $(MAVEN_CACHE_FOLDER)
+              displayName: Cache Maven packages
+
+            - task: Maven@3
+              displayName: 'Build and Test'
+              inputs:
+                goals: 'clean install -DskipTests'
+                mavenPomFile: '${{ parameters.repo }}/pom.xml'
+                mavenOptions: '-Xmx3072m $(MAVEN_OPTS)'
+                javaHomeOption: 'JDKVersion'
+                jdkVersionOption: '1.17'
+                mavenVersionOption: 'Default'
+                publishJUnitResults: true
+
+          - ${{ if eq(parameters.isFeatureBranch , false) }}: 
+            - task: Docker@2
+              displayName: Login to Dockerhub
+              inputs:
+                containerRegistry: 'dockerhub-1191244'
+                command: 'login'
+
+            - task: Docker@2
+              displayName: Build and Push Container
+              inputs:
+                containerRegistry: 'dockerhub-1191244'
+                repository: '1191244/${{ lower(parameters.repo) }}'
+                command: 'buildAndPush'
+                Dockerfile: '$(System.DefaultWorkingDirectory)/${{ parameters.repo }}/Dockerfile'
+                tags: ${{ parameters.env }}

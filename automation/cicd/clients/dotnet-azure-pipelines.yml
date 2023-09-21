@@ -1,0 +1,32 @@
+trigger:
+- master
+- feature/* 
+
+parameters:
+  - name: env
+    displayName: Environment
+    type: string
+    default: dev 
+
+resources:
+  repositories:
+    - repository: pipeline
+      type: git
+      ref: refs/heads/master
+      name: automation 
+
+pool:
+  vmImage: ubuntu-latest
+
+variables: 
+  - template: cicd/templates/variables/global.yml@pipeline
+
+stages:
+  - template: cicd/main.yml@pipeline
+    parameters:
+      repo: ${{ variables.repo }} 
+      branch: ${{ variables.branch }}
+      env: ${{ parameters.env }}
+      isFeatureBranch: ${{ variables.isFeatureBranch }}
+      isJava: false
+      isDotnet: true
