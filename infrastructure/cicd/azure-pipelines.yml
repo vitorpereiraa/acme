@@ -12,7 +12,10 @@ steps:
     displayName: "Install Go"
 
   - script: |
-      cd infrastructure/cicd && go get dagger.io/dagger@latest
+      cd infrastructure/cicd 
+      go get go@1.20
+      go mod tidy -go=1.20
+      go get dagger.io/dagger@latest
     displayName: "Install Dagger Go SDK and related"
 
   - script: cd /usr/local && { curl -L https://dl.dagger.io/dagger/install.sh | sh; cd -; }
