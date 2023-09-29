@@ -5,21 +5,19 @@ pool:
   name: "Azure Pipelines"
   vmImage: ubuntu-latest
 
+variables:
+  - group: dagger-environment-variables
+
 steps:
   - task: GoTool@0
     inputs:
       version: "1.21.0"
     displayName: "Install Go"
 
-  - script: |
-      cd infrastructure/cicd 
-      go get dagger.io/dagger@latest
-    displayName: "Install Dagger Go SDK and related"
-
   - script: cd /usr/local && { curl -L https://dl.dagger.io/dagger/install.sh | sh; cd -; }
     displayName: "Install Dagger CLI"
 
-  - script: make cicd #dagger run go run ci/main.go
+  - script: make cicd
     displayName: "Run Dagger"
     env:
       ENVIRONMENT: $(ENVIRONMENT)
