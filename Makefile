@@ -12,3 +12,6 @@ docker-build:
 docker-clean: 
 	docker container stop acme || true
 	docker container rm acme || true
+
+cicd:
+	dagger run go run infrastructure/cicd/dagger.go
