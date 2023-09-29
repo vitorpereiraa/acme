@@ -11,7 +11,7 @@ import (
 
 func main(){
 	godotenv.Load("infrastructure/cicd/.env")
-	enviroment := os.Getenv("ENVIROMENT")
+	environment := os.Getenv("ENVIRONMENT")
 	registryUrl := os.Getenv("REGISTRY_URL")
 	registryUsername := os.Getenv("REGISTRY_USERNAME")	
 	registryToken := os.Getenv("REGISTRY_TOKEN")
@@ -31,7 +31,7 @@ func main(){
 	_, err = source.
 		DockerBuild().
 		WithRegistryAuth(registryUrl, registryUsername, token).
-		Publish(ctx, fmt.Sprintf("%s/arqsoft-acme:%s", registryUsername, enviroment))
+		Publish(ctx, fmt.Sprintf("%s/arqsoft-acme:%s", registryUsername, environment))
 
 	if err != nil {
 		panic(err)
