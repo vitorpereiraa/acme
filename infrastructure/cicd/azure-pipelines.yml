@@ -12,10 +12,7 @@ steps:
     displayName: "Install Go"
 
   - script: |
-      go get dagger.io/dagger@latest
-      go get github.com/Azure/azure-sdk-for-go/sdk/azcore
-      go get github.com/Azure/azure-sdk-for-go/sdk/azidentity
-      go get github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerinstance/armcontainerinstance/v2
+      cd infrastructure/cicd && go get dagger.io/dagger@latest
     displayName: "Install Dagger Go SDK and related"
 
   - script: cd /usr/local && { curl -L https://dl.dagger.io/dagger/install.sh | sh; cd -; }
