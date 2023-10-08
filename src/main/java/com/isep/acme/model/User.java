@@ -11,6 +11,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@Table(name="\"User\"")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;

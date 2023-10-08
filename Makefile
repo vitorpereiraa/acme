@@ -1,7 +1,5 @@
-default: dr
-
 run:
-	./mvnw spring-boot:run
+	mvn spring-boot:run
 
 dr: docker-clean docker-build
 	docker run -p 8080:8080 --name acme docker.io/1191244/arqsoft/acme
