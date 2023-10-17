@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 
@@ -12,6 +13,7 @@ import com.isep.acme.property.FileStorageProperties;
 import java.awt.image.BufferedImage;
 
 @SpringBootApplication
+@ImportResource("classpath:applicationContext.xml")
 @EnableConfigurationProperties({
 		FileStorageProperties.class
 })
