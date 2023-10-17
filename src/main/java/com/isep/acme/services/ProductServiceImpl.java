@@ -1,5 +1,6 @@
 package com.isep.acme.services;
 
+import com.isep.acme.dtos.CreateProductDto;
 import com.isep.acme.model.Product;
 import com.isep.acme.dtos.ProductDTO;
 import com.isep.acme.dtos.ProductDetailDTO;
@@ -73,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public ProductDTO create(final Product product) {
+    public ProductDTO create(final CreateProductDto product) {
         String sku = product.getSku().isEmpty()
                 ? skuGenerator.generateSku()
                 : product.getSku();

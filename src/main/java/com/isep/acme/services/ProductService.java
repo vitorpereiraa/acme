@@ -2,6 +2,7 @@ package com.isep.acme.services;
 
 import java.util.Optional;
 
+import com.isep.acme.dtos.CreateProductDto;
 import com.isep.acme.model.Product;
 import com.isep.acme.dtos.ProductDTO;
 import com.isep.acme.dtos.ProductDetailDTO;
@@ -18,7 +19,7 @@ public interface ProductService {
 
     ProductDetailDTO getDetails(final String sku);
 
-    ProductDTO create(final Product manager);
+    ProductDTO create(final CreateProductDto manager);
 
     ProductDTO updateBySku(final String sku, final Product product);
 
