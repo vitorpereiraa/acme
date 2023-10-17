@@ -6,4 +6,8 @@
     <bean id="testService"
           class="com.isep.acme.services.TestServiceImpl2">
     </bean>
+
+    <bean id="skuGenerator"
+        class="com.isep.acme.model.SkuGeneratorInternal">
+    </bean>
 </beans>

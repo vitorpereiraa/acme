@@ -63,6 +63,7 @@ class ProductController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ProductDTO> create(@RequestBody Product manager) {
+        //TODO change product to dto
         try {
             final ProductDTO product = service.create(manager);
             return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);
