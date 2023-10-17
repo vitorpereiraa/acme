@@ -1,5 +1,7 @@
 package com.isep.acme.model;
 
+import com.isep.acme.dtos.ReviewDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 

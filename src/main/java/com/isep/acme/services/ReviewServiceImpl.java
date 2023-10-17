@@ -3,6 +3,9 @@ package com.isep.acme.services;
 import com.isep.acme.controllers.ResourceNotFoundException;
 import java.lang.IllegalArgumentException;
 
+import com.isep.acme.dtos.CreateReviewDTO;
+import com.isep.acme.dtos.ReviewDTO;
+import com.isep.acme.dtos.VoteReviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

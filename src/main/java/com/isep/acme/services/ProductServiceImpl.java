@@ -1,8 +1,8 @@
 package com.isep.acme.services;
 
 import com.isep.acme.model.Product;
-import com.isep.acme.model.ProductDTO;
-import com.isep.acme.model.ProductDetailDTO;
+import com.isep.acme.dtos.ProductDTO;
+import com.isep.acme.dtos.ProductDetailDTO;
 import com.isep.acme.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
         String sku = product.getSku().isEmpty()
                 ? skuGenerator.generateSku()
                 : product.getSku();
-        
+
         final Product p = new Product(sku, product.getDesignation(), product.getDescription());
 
         return repository.save(p).toDto();

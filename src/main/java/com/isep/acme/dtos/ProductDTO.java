@@ -1,4 +1,4 @@
-package com.isep.acme.model;
+package com.isep.acme.dtos;
 
 public class ProductDTO {
     private String sku;
