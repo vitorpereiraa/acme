@@ -13,7 +13,7 @@ public class CreateProductDto {
         this.designation = designation;
         this.description = description;
     }
-    
+
     public CreateProductDto(){}
 
     public void setSku(String sku) {

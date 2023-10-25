@@ -8,6 +8,9 @@
     </bean>
 
     <bean id="skuGenerator"
+        class="com.isep.acme.services.ExternalSkuGenerator">
+    </bean>
+    <bean id="backupSkuGenerator"
         class="com.isep.acme.model.SkuGeneratorInternal">
     </bean>
 </beans>
