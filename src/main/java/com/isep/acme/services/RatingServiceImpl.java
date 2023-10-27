@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isep.acme.model.Rating;
-import com.isep.acme.persistence.RatingPersistence;
 
 import java.util.Optional;
 

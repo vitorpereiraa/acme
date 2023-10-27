@@ -1,9 +1,10 @@
-package com.isep.acme.repositories;
+package com.isep.acme.repositories.sql;
 
 import com.isep.acme.dataModels.sql.UserDataModel;
 import com.isep.acme.dataModels.sql.UserMapper;
 import com.isep.acme.model.User;
-import com.isep.acme.persistence.UserPersistence;
+import com.isep.acme.persistence.sql.UserPersistence;
+import com.isep.acme.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

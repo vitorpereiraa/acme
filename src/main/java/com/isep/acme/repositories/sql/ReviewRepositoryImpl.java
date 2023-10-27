@@ -1,10 +1,11 @@
-package com.isep.acme.repositories;
+package com.isep.acme.repositories.sql;
 
 import com.isep.acme.dataModels.sql.*;
 import com.isep.acme.model.Product;
 import com.isep.acme.model.Review;
 import com.isep.acme.model.User;
-import com.isep.acme.persistence.ReviewPersistence;
+import com.isep.acme.persistence.sql.ReviewPersistence;
+import com.isep.acme.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

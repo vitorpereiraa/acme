@@ -1,4 +1,4 @@
-package com.isep.acme.persistence;
+package com.isep.acme.persistence.sql;
 
 import com.isep.acme.dataModels.sql.UserDataModel;
 import org.springframework.cache.annotation.CacheConfig;
