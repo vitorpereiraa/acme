@@ -1,7 +1,7 @@
 package com.isep.acme.repositories;
 
-import com.isep.acme.dataModels.ProdImageDataModel;
-import com.isep.acme.dataModels.ProdImageMapper;
+import com.isep.acme.dataModels.sql.ProdImageDataModel;
+import com.isep.acme.dataModels.sql.ProdImageMapper;
 import com.isep.acme.model.ProdImage;
 import com.isep.acme.persistence.ImagePersistence;
 import org.springframework.beans.factory.annotation.Autowired;

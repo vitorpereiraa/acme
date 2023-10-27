@@ -1,4 +1,4 @@
-package com.isep.acme.dataModels;
+package com.isep.acme.dataModels.sql;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

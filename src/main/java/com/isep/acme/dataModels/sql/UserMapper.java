@@ -1,4 +1,4 @@
-package com.isep.acme.dataModels;
+package com.isep.acme.dataModels.sql;
 
 
 import com.isep.acme.model.User;

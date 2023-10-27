@@ -1,6 +1,6 @@
 package com.isep.acme.persistence;
 
-import com.isep.acme.dataModels.ProductDataModel;
+import com.isep.acme.dataModels.sql.ProductDataModel;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

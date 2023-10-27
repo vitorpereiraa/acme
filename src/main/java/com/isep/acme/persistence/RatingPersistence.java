@@ -1,10 +1,8 @@
 package com.isep.acme.persistence;
 
-import com.isep.acme.dataModels.RatingDataModel;
+import com.isep.acme.dataModels.sql.RatingDataModel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.isep.acme.model.Rating;
 
 import java.util.Optional;
 

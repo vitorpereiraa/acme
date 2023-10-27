@@ -49,6 +49,16 @@ public class User implements UserDetails {
         this.morada = morada;
     }
 
+    public User(Long userId, String username, String password, String fullName, Set<Role> authorities, String nif, String morada) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.authorities = authorities;
+        this.nif = nif;
+        this.morada = morada;
+    }
+
     public void addAuthority(Role r) {
         authorities.add(r);
     }

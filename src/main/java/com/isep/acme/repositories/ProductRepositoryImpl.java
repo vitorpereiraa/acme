@@ -1,7 +1,7 @@
 package com.isep.acme.repositories;
 
-import com.isep.acme.dataModels.ProductDataModel;
-import com.isep.acme.dataModels.ProductMapper;
+import com.isep.acme.dataModels.sql.ProductDataModel;
+import com.isep.acme.dataModels.sql.ProductMapper;
 import com.isep.acme.model.Product;
 import com.isep.acme.persistence.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;

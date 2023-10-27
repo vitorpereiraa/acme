@@ -1,6 +1,6 @@
 package com.isep.acme.repositories;
 
-import com.isep.acme.dataModels.*;
+import com.isep.acme.dataModels.sql.*;
 import com.isep.acme.model.Product;
 import com.isep.acme.model.Review;
 import com.isep.acme.model.User;

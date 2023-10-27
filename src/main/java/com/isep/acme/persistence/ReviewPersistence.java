@@ -1,14 +1,10 @@
 package com.isep.acme.persistence;
 
-import com.isep.acme.dataModels.ProductDataModel;
-import com.isep.acme.dataModels.ReviewDataModel;
-import com.isep.acme.dataModels.UserDataModel;
+import com.isep.acme.dataModels.sql.ProductDataModel;
+import com.isep.acme.dataModels.sql.ReviewDataModel;
+import com.isep.acme.dataModels.sql.UserDataModel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.isep.acme.model.Product;
-import com.isep.acme.model.Review;
-import com.isep.acme.model.User;
 
 import java.util.List;
 import java.util.Optional;

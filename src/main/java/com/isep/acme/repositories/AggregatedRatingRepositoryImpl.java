@@ -1,14 +1,13 @@
 package com.isep.acme.repositories;
 
-import com.isep.acme.dataModels.AggregatedRatingDataModel;
-import com.isep.acme.dataModels.AggregatedRatingMapper;
-import com.isep.acme.dataModels.ProductDataModel;
-import com.isep.acme.dataModels.ProductMapper;
+import com.isep.acme.dataModels.sql.AggregatedRatingDataModel;
+import com.isep.acme.dataModels.sql.AggregatedRatingMapper;
+import com.isep.acme.dataModels.sql.ProductDataModel;
+import com.isep.acme.dataModels.sql.ProductMapper;
 import com.isep.acme.model.AggregatedRating;
 import com.isep.acme.model.Product;
 import com.isep.acme.persistence.AggregatedRatingPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
