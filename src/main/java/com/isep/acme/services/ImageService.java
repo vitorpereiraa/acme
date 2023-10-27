@@ -1,11 +1,11 @@
 package com.isep.acme.services;
 
+import com.isep.acme.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
 import com.isep.acme.model.ImageDTO;
 import com.isep.acme.model.ProdImage;
-import com.isep.acme.repositories.ImageRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
 package com.isep.acme.controllers;
 
 
+import com.isep.acme.repositories.ImageRepository;
+import com.isep.acme.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.isep.acme.model.ProdImage;
 import com.isep.acme.model.Product;
 import com.isep.acme.property.UploadFileResponse;
-import com.isep.acme.repositories.ImageRepository;
-import com.isep.acme.repositories.ProductRepository;
 import com.isep.acme.services.FileStorageService;
 
 import java.util.Arrays;

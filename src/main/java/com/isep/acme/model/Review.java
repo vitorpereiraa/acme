@@ -1,51 +1,36 @@
 package com.isep.acme.model;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-@Entity
+@AllArgsConstructor
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idReview;
 
-    @Version
     private long version;
 
-    @Column(nullable = false)
     private String approvalStatus;
 
-    @Column(nullable = false)
     private String reviewText;
 
-    @ElementCollection
-    @Column(nullable = true)
     private List<Vote> upVote;
 
-    @ElementCollection
-    @Column(nullable = true)
     private List<Vote> downVote;
 
-    @Column(nullable = true)
     private String report;
 
-    @Column(nullable = false)
     private LocalDate publishingDate;
 
-    @Column(nullable = false)
     private String funFact;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     private Rating rating;
 
     protected Review(){}
@@ -210,5 +195,9 @@ public class Review {
             return true;
         }
         return false;
+    }
+
+    public String getReport() {
+        return this.report;
     }
 }

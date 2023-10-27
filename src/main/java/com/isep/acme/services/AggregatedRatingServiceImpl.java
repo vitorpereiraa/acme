@@ -1,12 +1,12 @@
 package com.isep.acme.services;
 
+import com.isep.acme.repositories.AggregatedRatingRepository;
+import com.isep.acme.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isep.acme.model.AggregatedRating;
 import com.isep.acme.model.Product;
-import com.isep.acme.repositories.AggregatedRatingRepository;
-import com.isep.acme.repositories.ProductRepository;
 
 import java.util.Optional;
 

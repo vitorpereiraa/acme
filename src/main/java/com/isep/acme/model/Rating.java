@@ -2,20 +2,18 @@ package com.isep.acme.model;
 
 
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Getter
 public class Rating {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idRating;
 
-    @Version
     private long version;
 
-    @Column(nullable = false)
     private Double rate;
 
     protected Rating(){}
@@ -28,10 +26,6 @@ public class Rating {
 
     public Rating(Double rate) {
         setRate(rate);
-    }
-
-    public Double getRate() {
-        return rate;
     }
 
     public void setRate(Double rate) {

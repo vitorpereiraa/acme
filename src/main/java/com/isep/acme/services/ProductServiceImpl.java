@@ -3,8 +3,8 @@ package com.isep.acme.services;
 import com.isep.acme.model.Product;
 import com.isep.acme.model.ProductDTO;
 import com.isep.acme.model.ProductDetailDTO;
-import com.isep.acme.repositories.ProductRepository;
 
+import com.isep.acme.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

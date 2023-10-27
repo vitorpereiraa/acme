@@ -3,14 +3,14 @@ package com.isep.acme.services;
 import com.isep.acme.controllers.ResourceNotFoundException;
 import java.lang.IllegalArgumentException;
 
+import com.isep.acme.repositories.ProductRepository;
+import com.isep.acme.repositories.ReviewRepository;
+import com.isep.acme.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isep.acme.model.*;
 
-import com.isep.acme.repositories.ReviewRepository;
-import com.isep.acme.repositories.ProductRepository;
-import com.isep.acme.repositories.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,26 +1,22 @@
 package com.isep.acme.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.*;
 
-@Entity
 @Getter
 @Setter
-@Table(name="\"User\"")
+@AllArgsConstructor
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
     private Long userId;
 
-    @Column(unique = true)
     @Email
     private String username;
 
@@ -28,13 +24,10 @@ public class User implements UserDetails {
 
     private String fullName;
 
-    @ElementCollection
     private Set<Role> authorities = new HashSet<>();
 
-    @Column(nullable = false, unique = true)
     private String nif;
 
-    @Column(nullable = false)
     private String morada;
 
 /*    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

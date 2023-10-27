@@ -1,5 +1,6 @@
 package com.isep.acme.services;
 
+import com.isep.acme.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -11,7 +12,6 @@ import com.isep.acme.model.Product;
 import com.isep.acme.property.FileStorageException;
 import com.isep.acme.property.FileStorageProperties;
 import com.isep.acme.property.MyFileNotFoundException;
-import com.isep.acme.repositories.ProductRepository;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
