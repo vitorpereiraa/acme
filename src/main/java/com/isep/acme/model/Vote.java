@@ -1,18 +1,10 @@
 package com.isep.acme.model;
 
-import javax.persistence.Embeddable;
-
 import java.util.Objects;
 
-@Embeddable
 public class Vote {
     private String vote;
     private Long userID;
-
-
-    protected Vote() {
-
-    }
 
     public Vote(String vote, Long userID) {
         this.vote = vote;

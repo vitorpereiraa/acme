@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.isep.acme.model.Rating;
-import com.isep.acme.repositories.RatingRepository;
+import com.isep.acme.services.iRepositories.RatingRepository;
 
 @Component
 public class RatingBootstrapper implements CommandLineRunner {

@@ -15,9 +15,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.isep.acme.model.ProdImage;
 import com.isep.acme.model.Product;
 import com.isep.acme.property.UploadFileResponse;
-import com.isep.acme.repositories.ImageRepository;
-import com.isep.acme.repositories.ProductRepository;
 import com.isep.acme.services.FileStorageService;
+import com.isep.acme.services.iRepositories.ImageRepository;
+import com.isep.acme.services.iRepositories.ProductRepository;
 
 import java.util.Arrays;
 import java.util.List;

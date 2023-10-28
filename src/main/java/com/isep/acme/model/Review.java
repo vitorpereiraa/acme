@@ -1,54 +1,22 @@
 package com.isep.acme.model;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-@Entity
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idReview;
-
-    @Version
     private long version;
-
-    @Column(nullable = false)
     private String approvalStatus;
-
-    @Column(nullable = false)
     private String reviewText;
-
-    @ElementCollection
-    @Column(nullable = true)
     private List<Vote> upVote;
-
-    @ElementCollection
-    @Column(nullable = true)
     private List<Vote> downVote;
-
-    @Column(nullable = true)
     private String report;
-
-    @Column(nullable = false)
     private LocalDate publishingDate;
-
-    @Column(nullable = false)
     private String funFact;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     private Rating rating;
-
-    protected Review(){}
 
     public Review(final Long idReview, final long version, final String approvalStatus, final String reviewText, final LocalDate publishingDate, final String funFact) {
         this.idReview = Objects.requireNonNull(idReview);
@@ -59,7 +27,8 @@ public class Review {
         setFunFact(funFact);
     }
 
-    public Review(final Long idReview, final long version, final String approvalStatus, final  String reviewText, final List<Vote> upVote, final List<Vote> downVote, final String report, final LocalDate publishingDate, final String funFact, Product product, Rating rating, User user) {
+    // Constructor used when converting from Schema
+    public Review(final Long idReview, final long version, final String approvalStatus, final  String reviewText, List<Vote> upVote, List<Vote> downVote, final String report, final LocalDate publishingDate, final String funFact, Product product, Rating rating, User user) {
         this(idReview, version, approvalStatus, reviewText, publishingDate, funFact);
 
         setUpVote(upVote);
@@ -71,6 +40,7 @@ public class Review {
 
     }
 
+    // Constructor used on object creation
     public Review(final String reviewText, LocalDate publishingDate, Product product, String funFact, Rating rating, User user) {
         setReviewText(reviewText);
         setProduct(product);
@@ -119,10 +89,14 @@ public class Review {
     }
 
     public void setReport(String report) {
-        if (report.length() > 2048) {
+        if (report != null && report.length() > 2048) {
             throw new IllegalArgumentException("Report must not be greater than 2048 characters.");
         }
         this.report = report;
+    }
+
+    public String getReport(){
+        return this.report;
     }
 
     public LocalDate getPublishingDate() {
