@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isep.acme.model.AggregatedRating;
-import com.isep.acme.services.AggregatedRatingService;
+import com.isep.acme.services.iServices.AggregatedRatingService;
 
 @Tag(name = "AggregatedRating", description = "Endpoints for managing aggregated Rating")
 @RestController
@@ -24,6 +24,10 @@ public class AggregatedRatingController {
     ResponseEntity<AggregatedRating> getAverage(@PathVariable("sku") final String sku ) {
 
         AggregatedRating a = aService.save(sku);
+
+        if(a == null){
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok().body(a);
     }

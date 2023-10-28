@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.isep.acme.model.*;
-import com.isep.acme.services.ReviewService;
+import com.isep.acme.dtos.CreateReviewDTO;
+import com.isep.acme.dtos.ReviewDTO;
+import com.isep.acme.dtos.VoteReviewDTO;
+import com.isep.acme.services.iServices.ReviewService;
 
 import java.util.List;
 
@@ -34,6 +36,10 @@ class ReviewController {
     public ResponseEntity<List<ReviewDTO>> findReviewByUser(@PathVariable(value = "userID") final Long userID) {
 
         final var review = rService.findReviewsByUser(userID);
+
+        if(review == null){
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok().body(review);
     }

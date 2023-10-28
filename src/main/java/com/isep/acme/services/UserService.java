@@ -7,10 +7,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.isep.acme.dtos.UserView;
+import com.isep.acme.dtos.UserViewMapper;
 import com.isep.acme.model.User;
-import com.isep.acme.model.UserView;
-import com.isep.acme.model.UserViewMapper;
-import com.isep.acme.repositories.UserRepository;
+import com.isep.acme.services.iRepositories.UserRepository;
 
 import java.util.Optional;
 

@@ -1,24 +1,20 @@
 package com.isep.acme.model;
 
-
-import javax.persistence.*;
-
-@Entity
 public class AggregatedRating {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long aggregatedId;
-
-    @Column()
     private double average;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     private Product product;
 
-    protected AggregatedRating() {}
-
+    //Constructor used when Creating a AggregatedRating
     public AggregatedRating(double average, Product product) {
+        this.average = average;
+        this.product = product;
+    }
+
+    //Constructor used when converting from schema
+    public AggregatedRating(Long aggregatedId, double average, Product product) {
+        this.aggregatedId = aggregatedId;
         this.average = average;
         this.product = product;
     }
