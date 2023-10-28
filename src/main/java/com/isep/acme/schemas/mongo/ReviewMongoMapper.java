@@ -1,4 +1,4 @@
-package com.isep.acme.schemas.sql;
+package com.isep.acme.schemas.mongo;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,23 +14,23 @@ import com.isep.acme.model.Review;
 import com.isep.acme.model.User;
 import com.isep.acme.model.Vote;
 
-@Profile("sql")
+@Profile("mongo")
 @Component
-public class ReviewSqlMapper {
+public class ReviewMongoMapper {
+    
+    @Autowired
+    ProductMongoMapper productMapper;
 
     @Autowired
-    ProductSqlMapper productMapper;
+    RatingMongoMapper ratingMapper;
 
     @Autowired
-    RatingSqlMapper ratingMapper;
+    UserMongoMapper userMapper;
 
     @Autowired
-    UserSqlMapper userMapper;
+    VoteMongoMapper votesMapper;
 
-    @Autowired
-    VoteSqlMapper votesMapper;
-
-    public Review schemaToReview(ReviewSqlSchema schema){
+    public Review schemaToReview(ReviewMongoSchema schema){
         Product product = productMapper.schemaToProduct(schema.getProduct());
         Rating rating = ratingMapper.schemaToRating(schema.getRating());
         User user = userMapper.schemaToUser(schema.getUser());
@@ -52,13 +52,13 @@ public class ReviewSqlMapper {
         );
     }
 
-    public ReviewSqlSchema reviewToSchema (Review review){
-        ProductSqlSchema product = productMapper.productToSchema(review.getProduct());
-        RatingSqlSchema rating = ratingMapper.ratingToSchema(review.getRating());
-        UserSqlSchema user = userMapper.userToSchema(review.getUser());
-        List<VoteSqlSchema> upVotes = votesMapper.votesToSchemas(review.getUpVote());
-        List<VoteSqlSchema> downVotes = votesMapper.votesToSchemas(review.getDownVote());
-        return new ReviewSqlSchema(
+    public ReviewMongoSchema reviewToSchema (Review review){
+        ProductMongoSchema product = productMapper.productToSchema(review.getProduct());
+        RatingMongoSchema rating = ratingMapper.ratingToSchema(review.getRating());
+        UserMongoSchema user = userMapper.userToSchema(review.getUser());
+        List<VoteMongoSchema> upVotes = votesMapper.votesToSchemas(review.getUpVote());
+        List<VoteMongoSchema> downVotes = votesMapper.votesToSchemas(review.getDownVote());
+        return new ReviewMongoSchema(
             review.getIdReview(),
             review.getVersion(),
             review.getApprovalStatus(),
@@ -74,7 +74,7 @@ public class ReviewSqlMapper {
         );
     }
 
-    public List<Review> schemasToReviews(Iterable<ReviewSqlSchema> reviews) {
+    public List<Review> schemasToReviews(Iterable<ReviewMongoSchema> reviews) {
         return StreamSupport
             .stream(reviews.spliterator(), false)
             .map(this::schemaToReview)

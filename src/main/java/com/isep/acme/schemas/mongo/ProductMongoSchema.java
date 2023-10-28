@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 public class ProductMongoSchema {
     
     @Id
-    public Long productID;
+    private Long productID;
 
     @Indexed(unique = true)
-    public String sku;
+    private String sku;
 
     @Field
-    public String designation;
+    private String designation;
 
     @Field
-    public String description;
+    private String description;
 }
