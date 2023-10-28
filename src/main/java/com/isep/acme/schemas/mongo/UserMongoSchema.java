@@ -3,10 +3,11 @@ package com.isep.acme.schemas.mongo;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -23,6 +24,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserMongoSchema {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
 
     @Id
     private Long userId;

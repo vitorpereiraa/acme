@@ -1,10 +1,11 @@
 package com.isep.acme.schemas.mongo;
 
 import javax.annotation.Resource;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
@@ -18,6 +19,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImageMongoSchema {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "images_sequence";
 
     @Id
     private Long id;
