@@ -8,7 +8,7 @@ import com.isep.acme.model.Product;
 import com.isep.acme.services.iRepositories.ProductRepository;
 
 @Component
-//@Profile("bootstrap")
+// @Profile("bootstrap")
 public class ProductBootstrapper implements CommandLineRunner {
 
     @Autowired
@@ -16,7 +16,7 @@ public class ProductBootstrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        
+
         if (pRepo.findBySku("asd578fgh267").isEmpty()) {
             Product p1 = new Product("asd578fgh267", "Pen", "very good nice product");
             pRepo.save(p1);

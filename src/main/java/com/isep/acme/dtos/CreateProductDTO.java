@@ -1,8 +1,8 @@
 package com.isep.acme.dtos;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class CreateProductDTO {
     private String sku;
     private String designation;
@@ -14,7 +14,8 @@ public class CreateProductDTO {
         this.description = description;
     }
 
-    public CreateProductDTO(){}
+    public CreateProductDTO() {
+    }
 
     public void setSku(String sku) {
         this.sku = sku;

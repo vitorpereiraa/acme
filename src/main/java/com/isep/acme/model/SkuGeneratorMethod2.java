@@ -1,10 +1,11 @@
 package com.isep.acme.model;
 
-import com.isep.acme.services.SkuGenerator;
 import org.springframework.stereotype.Component;
 
+import com.isep.acme.services.iServices.SkuGeneratorService;
+
 @Component
-public class SkuGeneratorMethod2 implements SkuGenerator {
+public class SkuGeneratorMethod2 implements SkuGeneratorService {
     @Override
     public String generateSku() {
         String description = "aaashbdajshbdasbdjhasba";
