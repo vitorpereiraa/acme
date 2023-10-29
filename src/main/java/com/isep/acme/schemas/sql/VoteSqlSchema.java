@@ -1,9 +1,9 @@
 package com.isep.acme.schemas.sql;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VoteSqlSchema {
-    @Field
+    @Column
     private String vote;
-    @Field
+    @Column
     private Long userID;
 }
