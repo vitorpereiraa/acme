@@ -2,7 +2,6 @@ services:
   database:
     container_name: ${MONGODB_HOST}
     image: "mongo:7.0.2"
-    restart: always
     ports:
       - "${MONGODB_PORT}:${MONGODB_PORT}"
     environment:
@@ -12,7 +11,6 @@ services:
 
   mongo-express:
     image: "mongo-express"
-    restart: always
     ports:
       - 8081:8081
     environment:
@@ -33,7 +31,6 @@ services:
   # pgadmin:
   #   image: dpage/pgadmin4
   #   container_name: pgadmin4_container
-  #   restart: always
   #   ports:
   #     - "8888:80"
   #   environment:
@@ -57,6 +54,5 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
-    restart: on-failure
     depends_on:
       - database
