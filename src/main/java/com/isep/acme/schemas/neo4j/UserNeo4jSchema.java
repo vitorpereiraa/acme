@@ -29,8 +29,8 @@ public class UserNeo4jSchema {
 
     private String fullName;
 
-    @Relationship(direction = Relationship.Direction.OUTGOING, type = "is")
-    private Set<Role> authorities = new HashSet<>();
+    //@Relationship(direction = Relationship.Direction.OUTGOING, type = "is")
+    private Set<String> authorities;
 
     // TODO make unique
     private String nif;
