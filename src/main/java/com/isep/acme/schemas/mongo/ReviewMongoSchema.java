@@ -52,12 +52,12 @@ public class ReviewMongoSchema {
     @Field
     private String funFact;
 
-    @DocumentReference(lazy=true, lookup="{'ProductMongoSchema':?#{#self._id} }")
+    @DocumentReference(lazy=true)
     private ProductMongoSchema product;
 
-    @DocumentReference(lazy=true, lookup="{'UserMongoSchema':?#{#self._id} }")
+    @DocumentReference(lazy=true)
     private UserMongoSchema user;
 
-    @DocumentReference(lazy=true, lookup="{'RatingMongoSchema':?#{#self._id} }")
+    @DocumentReference(lazy=true)
     private RatingMongoSchema rating;
 }
