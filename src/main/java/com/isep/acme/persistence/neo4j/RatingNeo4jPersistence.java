@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface RatingNeo4jPersistence extends Neo4jRepository<RatingNeo4jSchema, Long> {
 
-    @Query("MATCH(r:Rating) WHERE r.rate = :rate RETURN r")
+    @Query("MATCH(r:Rating) WHERE r.rate = $rate RETURN r")
     Optional<RatingNeo4jSchema> findByRate(Double rate);
 }

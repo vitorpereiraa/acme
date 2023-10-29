@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface UserNeo4jPersistence extends Neo4jRepository<UserNeo4jSchema, Long> {
 
     //TODO check cacheable
-    @Query("MATCH(u:User) WHERE u.username = :username RETURN u")
+    @Query("MATCH(u:User) WHERE u.username = $username RETURN u")
     Optional<UserNeo4jSchema> findByUsername(String username);
 }

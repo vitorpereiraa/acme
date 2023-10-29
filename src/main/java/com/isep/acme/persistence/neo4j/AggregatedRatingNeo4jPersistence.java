@@ -8,6 +8,6 @@ import org.springframework.data.neo4j.repository.query.Query;
 import java.util.Optional;
 
 public interface AggregatedRatingNeo4jPersistence extends Neo4jRepository<AggregatedRatingNeo4jjSchema, Long> {
-    @Query("MATCH(ar:AggregatedRating) WHERE ar.product = :product RETURN ar")
+    @Query("MATCH(ar:AggregatedRating) WHERE ar.product = $product RETURN ar")
     Optional<AggregatedRatingNeo4jjSchema> findByProductId(ProductNeo4jSchema product);
 }
