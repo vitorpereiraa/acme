@@ -11,6 +11,7 @@ import java.lang.IllegalArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.isep.acme.model.*;
@@ -30,12 +31,15 @@ public class ReviewServiceImpl implements ReviewService {
     private static final Logger logger = LoggerFactory.getLogger(ReviewServiceImpl.class);
 
     @Autowired
+    @Qualifier("reviewRepository")
     ReviewRepository repository;
 
     @Autowired
+    @Qualifier("productRepository")
     ProductRepository pRepository;
 
     @Autowired
+    @Qualifier("userRepository")
     UserRepository uRepository;
 
     @Autowired
@@ -57,15 +61,15 @@ public class ReviewServiceImpl implements ReviewService {
 
         final Optional<Product> product = pRepository.findBySku(sku);
 
-        if(product.isEmpty()) return null;
+        if (product.isEmpty()) return null;
 
         final var user = userService.getUserId(createReviewDTO.getUserID());
 
-        if(user.isEmpty()) return null;
+        if (user.isEmpty()) return null;
 
         Rating rating = null;
         Optional<Rating> r = ratingService.findByRate(createReviewDTO.getRating());
-        if(r.isPresent()) {
+        if (r.isPresent()) {
             rating = r.get();
         }
 
@@ -88,7 +92,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewDTO> getReviewsOfProduct(String sku, String status) {
 
         Optional<Product> product = pRepository.findBySku(sku);
-        if( product.isEmpty() ) return null;
+        if (product.isEmpty()) return null;
 
         Iterable<Review> r = repository.findByProductIdStatus(product.get(), status);
 
@@ -120,7 +124,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Double getWeightedAverage(Product product){
+    public Double getWeightedAverage(Product product) {
 
         List<Review> r = repository.findByProductId(product);
 
@@ -128,36 +132,36 @@ public class ReviewServiceImpl implements ReviewService {
 
         double sum = 0;
 
-        for (Review rev: r) {
+        for (Review rev : r) {
             Rating rate = rev.getRating();
 
-            if (rate != null){
+            if (rate != null) {
                 sum += rate.getRate();
             }
         }
 
-        return sum/r.size();
+        return sum / r.size();
     }
 
     @Override
-    public Boolean DeleteReview(Long reviewId)  {
+    public Boolean DeleteReview(Long reviewId) {
 
         Optional<Review> rev = repository.findById(reviewId);
 
-        if (rev.isEmpty()){
+        if (rev.isEmpty()) {
             return null;
         }
         Review r = rev.get();
 
         if (r.getUpVote().isEmpty() && r.getDownVote().isEmpty()) {
-            repository.delete(r); 
+            repository.delete(r);
             return true;
         }
         return false;
     }
 
     @Override
-    public List<ReviewDTO> findPendingReview(){
+    public List<ReviewDTO> findPendingReview() {
 
         List<Review> r = repository.findPendingReviews();
 
@@ -169,13 +173,13 @@ public class ReviewServiceImpl implements ReviewService {
 
         Optional<Review> r = repository.findById(reviewID);
 
-        if(r.isEmpty()){
+        if (r.isEmpty()) {
             throw new ResourceNotFoundException("Review not found");
         }
 
         Boolean ap = r.get().setApprovalStatus(approved);
 
-        if(!ap) {
+        if (!ap) {
             throw new IllegalArgumentException("Invalid status value");
         }
 
@@ -190,7 +194,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         final Optional<User> user = uRepository.findById(userID);
 
-        if(user.isEmpty()) return null;
+        if (user.isEmpty()) return null;
 
         List<Review> r = repository.findByUserId(user.get());
 

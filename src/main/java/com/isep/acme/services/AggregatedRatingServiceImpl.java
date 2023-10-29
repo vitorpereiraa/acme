@@ -1,8 +1,8 @@
 package com.isep.acme.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.isep.acme.model.AggregatedRating;
 import com.isep.acme.model.Product;
@@ -18,9 +18,11 @@ import java.util.Optional;
 public class AggregatedRatingServiceImpl implements AggregatedRatingService{
 
     @Autowired
+    @Qualifier("aggregatedRatingRepository")
     AggregatedRatingRepository arRepository;
 
     @Autowired
+    @Qualifier("productRepository")
     private ProductRepository pRepository;
 
     @Autowired
