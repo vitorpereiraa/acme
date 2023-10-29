@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:experimental
+# syntax=docker/dockerfile:1.4
 FROM eclipse-temurin:19-jdk-alpine as build
 WORKDIR /workspace/app
 
@@ -10,7 +10,7 @@ COPY src src
 RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
 RUN mkdir -p target/extracted && (java -Djarmode=layertools -jar target/*.jar extract --destination target/extracted)
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:19-jdk-alpine
 VOLUME /tmp
 ARG EXTRACTED=/workspace/app/target/extracted
 COPY --from=build ${EXTRACTED}/dependencies/ ./

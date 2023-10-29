@@ -5,7 +5,7 @@ import org.springframework.core.io.Resource;
 
 import com.isep.acme.dtos.ImageDTO;
 import com.isep.acme.model.ProdImage;
-import com.isep.acme.repositories.ImageRepository;
+import com.isep.acme.services.iRepositories.ImageRepository;
 
 import java.util.ArrayList;
 import java.util.List;

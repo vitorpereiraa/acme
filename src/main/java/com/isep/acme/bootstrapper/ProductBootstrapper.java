@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.isep.acme.model.Product;
-import com.isep.acme.repositories.ProductRepository;
+import com.isep.acme.services.iRepositories.ProductRepository;
 
 @Component
 //@Profile("bootstrap")

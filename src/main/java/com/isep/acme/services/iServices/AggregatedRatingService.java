@@ -1,4 +1,4 @@
-package com.isep.acme.services;
+package com.isep.acme.services.iServices;
 
 import com.isep.acme.model.AggregatedRating;
 

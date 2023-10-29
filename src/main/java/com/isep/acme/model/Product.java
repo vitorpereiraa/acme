@@ -1,29 +1,16 @@
 package com.isep.acme.model;
 
-import com.isep.acme.dtos.ProductDTO;
-
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productID;
-
-    @Column(nullable = false, unique = true)
-    public String sku;
-
-    @Column(nullable = false)
+    private String sku;
     private String designation;
-
-    @Column(nullable = false)
     private String description;
+
     /*
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> review = new ArrayList<Review>(); */
-
-    protected Product(){}
 
     public Product(final Long productID, final String sku) {
         this.productID = Objects.requireNonNull(productID);
@@ -92,18 +79,15 @@ public class Product {
     }
 
 
-    public void updateProduct(Product p) {
-        setDesignation(p.designation);
-        setDescription(p.description);
+    public void updateProduct(String designation, String description) {
+        setDesignation(designation);
+        setDescription(description);
     }
 
     public Long getProductID() {
         return productID;
     }
 
-    public ProductDTO toDto() {
-        return new ProductDTO(this.sku, this.designation);
-    }
 /*
     public List<Review> getReview() {
         return review;

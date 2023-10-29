@@ -1,19 +1,24 @@
 package com.isep.acme.services;
 
 import com.isep.acme.controllers.ResourceNotFoundException;
-import java.lang.IllegalArgumentException;
-
 import com.isep.acme.dtos.CreateReviewDTO;
 import com.isep.acme.dtos.ReviewDTO;
+import com.isep.acme.dtos.ReviewMapper;
 import com.isep.acme.dtos.VoteReviewDTO;
+
+import java.lang.IllegalArgumentException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isep.acme.model.*;
-
-import com.isep.acme.repositories.ReviewRepository;
-import com.isep.acme.repositories.ProductRepository;
-import com.isep.acme.repositories.UserRepository;
+import com.isep.acme.services.iRepositories.ProductRepository;
+import com.isep.acme.services.iRepositories.ReviewRepository;
+import com.isep.acme.services.iRepositories.UserRepository;
+import com.isep.acme.services.iServices.RatingService;
+import com.isep.acme.services.iServices.ReviewService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +26,8 @@ import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReviewServiceImpl.class);
 
     @Autowired
     ReviewRepository repository;
@@ -83,11 +90,9 @@ public class ReviewServiceImpl implements ReviewService {
         Optional<Product> product = pRepository.findBySku(sku);
         if( product.isEmpty() ) return null;
 
-        Optional<List<Review>> r = repository.findByProductIdStatus(product.get(), status);
+        Iterable<Review> r = repository.findByProductIdStatus(product.get(), status);
 
-        if (r.isEmpty()) return null;
-
-        return ReviewMapper.toDtoList(r.get());
+        return ReviewMapper.toDtoList(r);
     }
 
     @Override
@@ -117,13 +122,13 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Double getWeightedAverage(Product product){
 
-        Optional<List<Review>> r = repository.findByProductId(product);
+        List<Review> r = repository.findByProductId(product);
 
         if (r.isEmpty()) return 0.0;
 
         double sum = 0;
 
-        for (Review rev: r.get()) {
+        for (Review rev: r) {
             Rating rate = rev.getRating();
 
             if (rate != null){
@@ -131,7 +136,7 @@ public class ReviewServiceImpl implements ReviewService {
             }
         }
 
-        return sum/r.get().size();
+        return sum/r.size();
     }
 
     @Override
@@ -145,7 +150,7 @@ public class ReviewServiceImpl implements ReviewService {
         Review r = rev.get();
 
         if (r.getUpVote().isEmpty() && r.getDownVote().isEmpty()) {
-            repository.delete(r);
+            repository.delete(r); 
             return true;
         }
         return false;
@@ -154,13 +159,9 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewDTO> findPendingReview(){
 
-        Optional<List<Review>> r = repository.findPendingReviews();
+        List<Review> r = repository.findPendingReviews();
 
-        if(r.isEmpty()){
-            return null;
-        }
-
-        return ReviewMapper.toDtoList(r.get());
+        return ReviewMapper.toDtoList(r);
     }
 
     @Override
@@ -191,10 +192,8 @@ public class ReviewServiceImpl implements ReviewService {
 
         if(user.isEmpty()) return null;
 
-        Optional<List<Review>> r = repository.findByUserId(user.get());
+        List<Review> r = repository.findByUserId(user.get());
 
-        if (r.isEmpty()) return null;
-
-        return ReviewMapper.toDtoList(r.get());
+        return ReviewMapper.toDtoList(r);
     }
 }
