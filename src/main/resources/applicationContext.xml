@@ -4,6 +4,6 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="reviewRecommendationAlgorithm"
-        class="com.isep.acme.model.ReviewRecommendationAlgo1">
+        class="com.isep.acme.model.ReviewRecommendationsAlgo1">
     </bean>
 </beans>
