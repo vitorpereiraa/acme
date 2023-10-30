@@ -69,6 +69,11 @@ public class ProductSqlRepository implements ProductRepository {
         return productMapper.schemaToProduct(persisted);
     }
 
+    @Override
+    public void runConstraints() {
+
+    }
+
     // @Override
     // public Product update(Product product) {
     //     ProductSqlSchema schema = productMapper.productToSchema(product);

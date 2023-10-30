@@ -19,6 +19,8 @@ public interface ProductRepository {
 
     Product save(Product product);
 
+    void runConstraints();
+
   /*  @Query("SELECT p FROM ProdImage p WHERE p.id=:id")
     Optional<Product> findById(Long  id); */
 }

@@ -51,4 +51,10 @@ public class UserNeo4jRepositoryImpl implements UserRepository {
         var userSchema = persistence.findByUsername(username);
         return userSchema.map(userMapper::schemaToDomain);
     }
+
+    @Override
+    public void runConstraints() {
+        persistence.runUsernameConstraint();
+        persistence.runNifConstraint();
+    }
 }

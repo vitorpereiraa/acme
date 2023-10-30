@@ -59,4 +59,9 @@ public class ProductNeo4jRepositoryImpl implements ProductRepository {
         var savedProductSchema = productPersistence.save(productSchema);
         return productMapper.schemaToDomain(savedProductSchema);
     }
+
+    @Override
+    public void runConstraints() {
+        productPersistence.runSkuConstraint();
+    }
 }

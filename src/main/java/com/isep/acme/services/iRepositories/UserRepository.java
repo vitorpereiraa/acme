@@ -9,4 +9,6 @@ public interface UserRepository {
     Optional<User> findById(Long userId);
     User getById(final Long userId);
     Optional<User> findByUsername(String username);
+
+    void runConstraints();
 }

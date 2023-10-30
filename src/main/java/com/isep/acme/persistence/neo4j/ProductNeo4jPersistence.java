@@ -4,13 +4,15 @@ import com.isep.acme.schemas.neo4j.ProductNeo4jSchema;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ProductNeo4jPersistence extends Neo4jRepository<ProductNeo4jSchema,Long> {
+
+    @Query("CREATE CONSTRAINT IF NOT EXISTS FOR (n:Product) REQUIRE n.sku IS UNIQUE")
+    void runSkuConstraint();
 
     @Query("MATCH(p:Product) WHERE p.designation=$designation RETURN p")
     List<ProductNeo4jSchema> findByDesignation(String designation);

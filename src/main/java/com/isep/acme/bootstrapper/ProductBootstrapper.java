@@ -18,6 +18,7 @@ public class ProductBootstrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        pRepo.runConstraints();
         
         if (pRepo.findBySku("asd578fgh267").isEmpty()) {
             Product p1 = new Product("asd578fgh267", "Pen", "very good nice product");
