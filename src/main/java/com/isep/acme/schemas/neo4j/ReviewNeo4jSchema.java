@@ -6,6 +6,7 @@ import com.isep.acme.model.User;
 import com.isep.acme.model.Vote;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Node("Review")
 @Getter
+@Setter
 @AllArgsConstructor
 public class ReviewNeo4jSchema {
     @Id
@@ -31,9 +33,10 @@ public class ReviewNeo4jSchema {
 
     private String reviewText;
 
+    @Relationship(direction = Relationship.Direction.OUTGOING, type = "has upvote")
     private List<VoteNeo4jSchema> upVote;
 
-    @Relationship(direction = Relationship.Direction.OUTGOING, type = "has")
+    @Relationship(direction = Relationship.Direction.OUTGOING, type = "has downvote")
     private List<VoteNeo4jSchema> downVote;
 
     private String report;

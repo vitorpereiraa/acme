@@ -27,7 +27,7 @@ public class ReviewNeo4jMapper {
     public Review schemaToDomain(ReviewNeo4jSchema schema){
         var user = userMapper.schemaToDomain(schema.getUser());
         var upVotes = voteMapper.schemaListToDomainList(schema.getUpVote());
-        var downVotes = voteMapper.schemaListToDomainList(schema.getUpVote());
+        var downVotes = voteMapper.schemaListToDomainList(schema.getDownVote());
         var rating = ratingMapper.schemaToDomain(schema.getRating());
         var product = productMapper.schemaToDomain(schema.getProduct());
         return new Review(schema.getIdReview(), schema.getVersion(), schema.getApprovalStatus(), schema.getReviewText(),
@@ -38,7 +38,7 @@ public class ReviewNeo4jMapper {
     public ReviewNeo4jSchema domainToSchema(Review review){
         var userSchema = userMapper.domainToSchema(review.getUser());
         var upVoteSchemas = voteMapper.domainListToSchemaList(review.getUpVote());
-        var downVoteSchemas = voteMapper.domainListToSchemaList(review.getUpVote());
+        var downVoteSchemas = voteMapper.domainListToSchemaList(review.getDownVote());
         var ratingSchema = ratingMapper.domainToSchema(review.getRating());
         var productSchema = productMapper.domainToSchema(review.getProduct());
         return new ReviewNeo4jSchema(review.getIdReview(), review.getVersion(), review.getApprovalStatus(), review.getReviewText(),
