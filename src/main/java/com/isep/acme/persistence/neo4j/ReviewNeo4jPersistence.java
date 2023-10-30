@@ -11,19 +11,31 @@ import java.util.List;
 
 @Component
 public interface ReviewNeo4jPersistence extends Neo4jRepository<ReviewNeo4jSchema, Long> {
-
-    @Query("MATCH(r:Review) WHERE r.product=$product RETURN r ORDER BY r.publishingDate DESC")
+    @Query(Neo4jPersistenceConstants.Review.Match +
+            "WHERE r.product=$product " +
+            Neo4jPersistenceConstants.Review.Return +
+            "ORDER BY r.publishingDate DESC")
     List<ReviewNeo4jSchema> findByProductId(ProductNeo4jSchema product);
 
-    @Query("MATCH(r:Review) WHERE r.approvalStatus='pending' RETURN r")
+    @Query(Neo4jPersistenceConstants.Review.Match +
+            "WHERE r.approvalStatus='pending' " +
+            Neo4jPersistenceConstants.Review.Return)
     List<ReviewNeo4jSchema> findPendingReviews();
 
-    @Query("MATCH(r:Review) WHERE r.approvalStatus='active' RETURN r")
+    @Query(Neo4jPersistenceConstants.Review.Match +
+            "WHERE r.approvalStatus='active' " +
+            Neo4jPersistenceConstants.Review.Return)
     List<ReviewNeo4jSchema> findActiveReviews();
 
-    @Query("MATCH(r:Review) WHERE r.product=$product AND r.approvalStatus=$status RETURN r ORDER BY r.publishingDate DESC")
+    @Query(Neo4jPersistenceConstants.Review.Match +
+            "WHERE r.product=$product AND r.approvalStatus=$status " +
+            Neo4jPersistenceConstants.Review.Return +
+            "ORDER BY r.publishingDate DESC")
     List<ReviewNeo4jSchema> findByProductIdStatus(ProductNeo4jSchema product, String status);
 
-    @Query("MATCH(r:Review) WHERE r.user=$user RETURN r ORDER BY r.publishingDate DESC")
+    @Query(Neo4jPersistenceConstants.Review.Match +
+            "WHERE r.user=$user " +
+            Neo4jPersistenceConstants.Review.Return +
+            "ORDER BY r.publishingDate DESC")
     List<ReviewNeo4jSchema> findByUserId(UserNeo4jSchema user);
 }
