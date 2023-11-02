@@ -1,44 +1,41 @@
 services:
-  # database:
-  #   container_name: ${MONGODB_HOST}
-  #   image: "mongo:7.0.2"
-  #   restart: always
-  #   ports:
-  #     - "${MONGODB_PORT}:${MONGODB_PORT}"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: ${DATASOURCE_USER}
-  #     MONGO_INITDB_ROOT_PASSWORD: ${DATASOURCE_PASSWORD}
-  #     MONGO_INITDB_DATABASE: ${MONGODB_DB_NAME}
-
-  # mongo-express:
-  #   image: "mongo-express"
-  #   restart: always
-  #   ports:
-  #     - 8081:8081
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: ${DATASOURCE_USER}
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: ${DATASOURCE_PASSWORD}
-  #     ME_CONFIG_MONGODB_URL: ${MONGODB_CONNECTION_STRING}
-
   database:
-    container_name: ${POSTGRES_HOST}
-    image: "postgres:15.2"
+    container_name: ${MONGODB_HOST}
+    image: "mongo:7.0.2"
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
     environment:
-      - "POSTGRES_DB=${POSTGRES_DB_NAME}"
-      - "POSTGRES_USER=${DATASOURCE_USER}"
-      - "POSTGRES_PASSWORD=${DATASOURCE_PASSWORD}"
+      MONGO_INITDB_ROOT_USERNAME: ${DATASOURCE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATASOURCE_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB_NAME}
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4_container
-    restart: always
+  mongo-express:
+    image: "mongo-express"
     ports:
-      - "8888:80"
+      - 8081:8081
     environment:
-      PGADMIN_DEFAULT_EMAIL: pg@mail.com
-      PGADMIN_DEFAULT_PASSWORD: password
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DATASOURCE_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DATASOURCE_PASSWORD}
+      ME_CONFIG_MONGODB_URL: ${MONGODB_CONNECTION_STRING}
+
+  # database:
+  #   container_name: ${POSTGRES_HOST}
+  #   image: "postgres:15.2"
+  #   ports:
+  #     - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+  #   environment:
+  #     - "POSTGRES_DB=${POSTGRES_DB_NAME}"
+  #     - "POSTGRES_USER=${DATASOURCE_USER}"
+  #     - "POSTGRES_PASSWORD=${DATASOURCE_PASSWORD}"
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin4_container
+  #   ports:
+  #     - "8888:80"
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: pg@mail.com
+  #     PGADMIN_DEFAULT_PASSWORD: password
 
   app:
     container_name: ${APPLICATION_NAME}
@@ -57,6 +54,5 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
-    restart: on-failure
     depends_on:
       - database

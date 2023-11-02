@@ -68,11 +68,4 @@ public class ProductSqlRepository implements ProductRepository {
         ProductSqlSchema persisted = productPersistence.save(schema);
         return productMapper.schemaToProduct(persisted);
     }
-
-    // @Override
-    // public Product update(Product product) {
-    //     ProductSqlSchema schema = productMapper.productToSchema(product);
-    //     ProductSqlSchema persisted = productPersistence.save(schema);
-    //     return productMapper.schemaToProduct(persisted);
-    // }
 }
