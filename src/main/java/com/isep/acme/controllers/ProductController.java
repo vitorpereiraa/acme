@@ -1,5 +1,6 @@
 package com.isep.acme.controllers;
 
+import com.isep.acme.dtos.CreateProductDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
@@ -61,7 +62,7 @@ class ProductController {
     @Operation(summary = "creates a product")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ProductDTO> create(@RequestBody ProductDetailDTO manager) {
+    public ResponseEntity<ProductDTO> create(@RequestBody CreateProductDTO manager) {
         try {
             final ProductDTO product = service.create(manager);
             return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);

@@ -1,16 +1,15 @@
 package com.isep.acme.controllers;
 
+import com.isep.acme.dtos.CreateReviewDTO;
+import com.isep.acme.dtos.ReviewDTO;
+import com.isep.acme.dtos.VoteReviewDTO;
+import com.isep.acme.services.iServices.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import com.isep.acme.dtos.CreateReviewDTO;
-import com.isep.acme.dtos.ReviewDTO;
-import com.isep.acme.dtos.VoteReviewDTO;
-import com.isep.acme.services.iServices.ReviewService;
 
 import java.util.List;
 
