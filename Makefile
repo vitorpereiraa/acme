@@ -2,7 +2,13 @@ up-mongo:
 	docker compose -f ./docker-compose-mongodb.yml up --build --attach app
 
 down-mongo:
-	docker compose -f ./docker-compose-mongodb.yml down 
+	docker compose -f ./docker-compose-mongodb.yml down
+
+up-neo4j:
+	docker compose -f ./docker-compose-neo4j.yml up --build --attach app
+
+down-neo4j:
+	docker compose -f ./docker-compose-neo4j.yml down
 
 up-postgres:
 	docker compose -f ./docker-compose-postgres.yml up --build --attach app

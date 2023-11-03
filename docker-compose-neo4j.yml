@@ -1,0 +1,24 @@
+services:
+  database:
+    container_name: neo4j
+    image: neo4j:5.13.0-community
+    environment:
+      - "NEO4J_AUTH=neo4j/password"
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+  app:
+    container_name: acme
+    build: ./
+    ports:
+      - "8080:8080"
+    environment:
+      - DATASOURCE_URL=neo4j://host.docker.internal:7687
+      - APPLICATION_PROFILE=neo4j,bootstrap
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+    depends_on:
+      - database
