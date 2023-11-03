@@ -3,7 +3,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="skuGenerator"
+        class="com.isep.acme.model.SkuGeneratorMethod1">
+    </bean>
+  
     <bean id="reviewRecommendationAlgorithm"
         class="com.isep.acme.model.ReviewRecommendationsAlgo1">
     </bean>
+  
 </beans>

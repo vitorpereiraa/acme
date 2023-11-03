@@ -23,5 +23,4 @@ public class AggregatedRatingSqlMapper {
         Product product = productMapper.schemaToProduct(schema.getProduct());
         return new AggregatedRating(schema.getAggregatedId(),schema.getAverage(),product);
     }
-    
 }

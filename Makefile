@@ -1,8 +1,14 @@
-up:
-	docker compose up --build --attach app
+up-mongo:
+	docker compose -f ./docker-compose-mongodb.yml up --build --attach app
 
-down:
-	docker compose down
+down-mongo:
+	docker compose -f ./docker-compose-mongodb.yml down 
+
+up-postgres:
+	docker compose -f ./docker-compose-postgres.yml up --build --attach app
+	
+down-postgres:
+	docker compose -f ./docker-compose-postgres.yml down 
 
 run:
 	mvn spring-boot:run
