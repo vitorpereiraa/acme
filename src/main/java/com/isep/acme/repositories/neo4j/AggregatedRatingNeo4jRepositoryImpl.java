@@ -30,7 +30,7 @@ public class AggregatedRatingNeo4jRepositoryImpl implements AggregatedRatingRepo
     @Override
     public Optional<AggregatedRating> findByProductId(Product product) {
         ProductNeo4jSchema dataModel = productMapper.domainToSchema(product);
-        Optional<AggregatedRatingNeo4jjSchema> aggregatedRatingDataModel = aggregatedRatingPersistence.findByProductId(dataModel);
+        Optional<AggregatedRatingNeo4jjSchema> aggregatedRatingDataModel = aggregatedRatingPersistence.findByProductId(dataModel.getProductID());
         return aggregatedRatingDataModel.map(aggregatedRatingMapper::schemaToDomain);
     }
 

@@ -59,7 +59,7 @@ public class ReviewNeo4jRepositoryImpl implements ReviewRepository {
     @Override
     public List<Review> findByProductId(Product product) {
         var productSchema = productMapper.domainToSchema(product);
-        var schemas = persistence.findByProductId(productSchema);
+        var schemas = persistence.findByProductId(productSchema.getProductID());
         return reviewMapper.schemaListToDomainList(schemas);
     }
 
@@ -78,14 +78,14 @@ public class ReviewNeo4jRepositoryImpl implements ReviewRepository {
     @Override
     public List<Review> findByProductIdStatus(Product product, String status) {
         var productSchema = productMapper.domainToSchema(product);
-        var schemas = persistence.findByProductIdStatus(productSchema, status);
+        var schemas = persistence.findByProductIdStatus(productSchema.getProductID(), status);
         return reviewMapper.schemaListToDomainList(schemas);
     }
 
     @Override
     public List<Review> findByUserId(User user) {
         var userSchema = userMapper.domainToSchema(user);
-        var schemas = persistence.findByUserId(userSchema);
+        var schemas = persistence.findByUserId(userSchema.getUserId());
         return reviewMapper.schemaListToDomainList(schemas);
     }
 }
