@@ -6,9 +6,9 @@ public class SkuGeneratorMethod2 implements SkuGeneratorService {
     @Override
     public String generateSku(String value) {
         int hashCode = value.hashCode();
-        String hashCodeString = Integer.toString(hashCode);
+        String hashCodeString = Integer.toHexString(hashCode);
         if (hashCodeString.length() <= 10) {
-            return Integer.toHexString(hashCode);
+            return hashCodeString;
         }
 
         return Utils.GetMiddleOfString(hashCodeString);
