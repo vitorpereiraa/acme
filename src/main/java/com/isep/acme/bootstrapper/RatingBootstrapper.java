@@ -2,12 +2,14 @@ package com.isep.acme.bootstrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.isep.acme.model.Rating;
 import com.isep.acme.services.iRepositories.RatingRepository;
 
 @Component
+@Profile("bootstrap")
 public class RatingBootstrapper implements CommandLineRunner {
 
     @Autowired
