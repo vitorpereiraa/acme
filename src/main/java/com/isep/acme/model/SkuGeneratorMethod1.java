@@ -20,7 +20,7 @@ public class SkuGeneratorMethod1 implements SkuGeneratorService {
      * A special character or symbol is added to the end
      */
     @Override
-    public String generateSku() {
+    public String generateSku(String value) {
         return new StringBuilder()
                 .append(generateRandomNumbersAndLettersAlternatly(4))
                 .append("-")

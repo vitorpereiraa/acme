@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO create(final CreateProductDTO product) {
         if (product.getSku() == null || product.getSku().isEmpty()) {
-            String sku = skuGenerator.generateSku();
+            String sku = skuGenerator.generateSku(product.getDesignation());
             product.setSku(sku);
         }
         logger.info("SAVING: " + product.toString());

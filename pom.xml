@@ -125,8 +125,13 @@
      <artifactId>spring-security-core</artifactId>
 	<!-- <version>5.1.6.RELEASE</version> -->
    </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
 
- </dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
