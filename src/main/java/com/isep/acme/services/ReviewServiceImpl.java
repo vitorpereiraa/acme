@@ -212,9 +212,9 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDTO> getReviewRecommendations() {
+    public List<ReviewDTO> getReviewRecommendations(Long userId) {
         final List<Review> reviews = repository.findAll();
-        final List<Review> recommendations = recommendationService.getRecommendations(reviews);
+        final List<Review> recommendations = recommendationService.getRecommendations(reviews, userId);
         return ReviewMapper.toDtoList(recommendations);
     }
 }

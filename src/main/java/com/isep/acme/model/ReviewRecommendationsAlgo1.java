@@ -12,7 +12,7 @@ import com.isep.acme.services.iServices.ReviewRecommendationService;
 public class ReviewRecommendationsAlgo1 implements ReviewRecommendationService {
 
     @Override
-    public List<Review> getRecommendations(List<Review> allReviews) {
+    public List<Review> getRecommendations(List<Review> allReviews, Long userId) {
         Comparator<Review> reviewQtyOfUpVotesComparator = new Comparator<Review>() {
             @Override
             public int compare(Review r1, Review r2) {

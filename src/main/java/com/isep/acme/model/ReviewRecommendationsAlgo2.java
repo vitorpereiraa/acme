@@ -22,15 +22,14 @@ public class ReviewRecommendationsAlgo2 implements ReviewRecommendationService {
     private ReviewRepository reviewRepository;
 
     @Override
-    public List<Review> getRecommendations(List<Review> allReviews) {
+    public List<Review> getRecommendations(List<Review> allReviews, Long userId) {
         List<Review> recommendedReviews = new ArrayList<>();
-        Long currentUserId = 0L;
         AtomicInteger currentUserTotalVotes = new AtomicInteger();
         Map<Long, Integer> votesPerUser = new TreeMap<>();
-        
+
         allReviews.forEach(review -> {
-            currentUserTotalVotes.addAndGet(GetUsersWithSameVotes(review.getUpVote(), currentUserId, votesPerUser));
-            currentUserTotalVotes.addAndGet(GetUsersWithSameVotes(review.getDownVote(), currentUserId, votesPerUser));
+            currentUserTotalVotes.addAndGet(GetUsersWithSameVotes(review.getUpVote(), userId, votesPerUser));
+            currentUserTotalVotes.addAndGet(GetUsersWithSameVotes(review.getDownVote(), userId, votesPerUser));
         });
 
         for (var entry : votesPerUser.entrySet()) {

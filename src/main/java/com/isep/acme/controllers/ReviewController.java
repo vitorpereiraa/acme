@@ -6,9 +6,13 @@ import com.isep.acme.dtos.VoteReviewDTO;
 import com.isep.acme.services.iServices.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +27,7 @@ class ReviewController {
     @Operation(summary = "finds a product through its sku and shows its review by status")
     @GetMapping("/products/{sku}/reviews/{status}")
     public ResponseEntity<List<ReviewDTO>> findById(@PathVariable(value = "sku") final String sku,
-            @PathVariable(value = "status") final String status) {
+                                                    @PathVariable(value = "status") final String status) {
 
         final var review = rService.getReviewsOfProduct(sku, status);
 
@@ -46,7 +50,7 @@ class ReviewController {
     @Operation(summary = "creates review")
     @PostMapping("/products/{sku}/reviews")
     public ResponseEntity<ReviewDTO> createReview(@PathVariable(value = "sku") final String sku,
-            @RequestBody CreateReviewDTO createReviewDTO) {
+                                                  @RequestBody CreateReviewDTO createReviewDTO) {
 
         final var review = rService.create(createReviewDTO, sku);
 
@@ -60,7 +64,7 @@ class ReviewController {
     @Operation(summary = "add vote")
     @PutMapping("/reviews/{reviewID}/vote")
     public ResponseEntity<Boolean> addVote(@PathVariable(value = "reviewID") final Long reviewID,
-            @RequestBody VoteReviewDTO voteReviewDTO) {
+                                           @RequestBody VoteReviewDTO voteReviewDTO) {
 
         boolean added = this.rService.addVoteToReview(reviewID, voteReviewDTO);
 
@@ -98,7 +102,7 @@ class ReviewController {
     @Operation(summary = "Accept or reject review")
     @PutMapping("/reviews/acceptreject/{reviewID}")
     public ResponseEntity<ReviewDTO> putAcceptRejectReview(@PathVariable(value = "reviewID") final Long reviewID,
-            @RequestBody String approved) {
+                                                           @RequestBody String approved) {
 
         try {
             ReviewDTO rev = rService.moderateReview(reviewID, approved);
@@ -113,8 +117,9 @@ class ReviewController {
 
     @Operation(summary = "Gets reviews recommendation")
     @GetMapping("/reviews/recommendations")
-    public ResponseEntity<List<ReviewDTO>> getReviewRecomendations() {
-        List<ReviewDTO> reviews = rService.getReviewRecommendations();
+    public ResponseEntity<List<ReviewDTO>> getReviewRecommendations(@AuthenticationPrincipal Jwt token) {
+        Long userId = Long.valueOf(token.getSubject().split(",")[0]);
+        List<ReviewDTO> reviews = rService.getReviewRecommendations(userId);
         return ResponseEntity.ok().body(reviews);
     }
 }
