@@ -9,12 +9,14 @@ import com.isep.acme.schemas.neo4j.ReviewNeo4jMapper;
 import com.isep.acme.schemas.neo4j.UserNeo4jMapper;
 import com.isep.acme.services.iRepositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Profile("neo4j")
 public class ReviewNeo4jRepositoryImpl implements ReviewRepository {
 
     @Autowired

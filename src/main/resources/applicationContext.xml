@@ -2,23 +2,4 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="aggregatedRatingRepository"
-          class="com.isep.acme.repositories.neo4j.AggregatedRatingNeo4jRepositoryImpl">
-    </bean>
-    <bean id="imageRepository"
-          class="com.isep.acme.repositories.neo4j.ImageNeo4jRepositoryImpl">
-    </bean>
-    <bean id="productRepository"
-          class="com.isep.acme.repositories.neo4j.ProductNeo4jRepositoryImpl">
-    </bean>
-    <bean id="ratingRepository"
-          class="com.isep.acme.repositories.neo4j.RatingNeo4jRepositoryImpl">
-    </bean>
-    <bean id="reviewRepository"
-          class="com.isep.acme.repositories.neo4j.ReviewNeo4jRepositoryImpl">
-    </bean>
-    <bean id="userRepository"
-          class="com.isep.acme.repositories.neo4j.UserNeo4jRepositoryImpl">
-    </bean>
 </beans>

@@ -1,8 +1,6 @@
 package com.isep.acme.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 
 import com.isep.acme.dtos.ImageDTO;
@@ -23,7 +21,6 @@ public class ImageService {
      @Autowired
      private FileStorageService service;
      @Autowired
-     @Qualifier("imageRepository")
      private ImageRepository repository;
     private String filename;
 

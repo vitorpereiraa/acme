@@ -6,11 +6,13 @@ import com.isep.acme.schemas.neo4j.RatingNeo4jMapper;
 import com.isep.acme.schemas.neo4j.RatingNeo4jSchema;
 import com.isep.acme.services.iRepositories.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@Profile("neo4j")
 public class RatingNeo4jRepositoryImpl implements RatingRepository {
 
     @Autowired

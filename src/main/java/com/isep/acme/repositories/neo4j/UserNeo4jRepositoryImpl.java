@@ -6,11 +6,13 @@ import com.isep.acme.persistence.neo4j.UserNeo4jPersistence;
 import com.isep.acme.schemas.neo4j.UserNeo4jMapper;
 import com.isep.acme.services.iRepositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@Profile("neo4j")
 public class UserNeo4jRepositoryImpl implements UserRepository {
 
     @Autowired

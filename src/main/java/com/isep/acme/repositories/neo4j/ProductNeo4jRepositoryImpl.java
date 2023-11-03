@@ -5,11 +5,13 @@ import com.isep.acme.persistence.neo4j.ProductNeo4jPersistence;
 import com.isep.acme.schemas.neo4j.ProductNeo4jMapper;
 import com.isep.acme.services.iRepositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@Profile("neo4j")
 public class ProductNeo4jRepositoryImpl implements ProductRepository {
 
     @Autowired
