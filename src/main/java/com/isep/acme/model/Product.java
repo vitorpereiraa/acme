@@ -3,7 +3,6 @@ package com.isep.acme.model;
 import java.util.Objects;
 
 public class Product {
-
     private Long productID;
     private String sku;
     private String designation;

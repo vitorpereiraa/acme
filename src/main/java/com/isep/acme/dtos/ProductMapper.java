@@ -28,5 +28,9 @@ public class ProductMapper {
     public Product detailedDTOToProduct(ProductDetailDTO product){
         return new Product(product.getSku(), product.getDesignation(), product.getDescription());
     }
+
+    public Product creationDTOToProduct(CreateProductDTO product){
+        return new Product(product.getSku(), product.getDesignation(), product.getDescription());
+    }
 }
 

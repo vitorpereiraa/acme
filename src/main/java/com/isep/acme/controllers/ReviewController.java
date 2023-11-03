@@ -1,5 +1,9 @@
 package com.isep.acme.controllers;
 
+import com.isep.acme.dtos.CreateReviewDTO;
+import com.isep.acme.dtos.ReviewDTO;
+import com.isep.acme.dtos.VoteReviewDTO;
+import com.isep.acme.services.iServices.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.isep.acme.dtos.CreateReviewDTO;
-import com.isep.acme.dtos.ReviewDTO;
-import com.isep.acme.dtos.VoteReviewDTO;
-import com.isep.acme.services.iServices.ReviewService;
-
 import java.util.List;
-
 
 @Tag(name = "Review", description = "Endpoints for managing Review")
 @RestController
@@ -24,11 +22,12 @@ class ReviewController {
 
     @Operation(summary = "finds a product through its sku and shows its review by status")
     @GetMapping("/products/{sku}/reviews/{status}")
-    public ResponseEntity<List<ReviewDTO>> findById(@PathVariable(value = "sku") final String sku, @PathVariable(value = "status") final String status) {
+    public ResponseEntity<List<ReviewDTO>> findById(@PathVariable(value = "sku") final String sku,
+            @PathVariable(value = "status") final String status) {
 
         final var review = rService.getReviewsOfProduct(sku, status);
 
-        return ResponseEntity.ok().body( review );
+        return ResponseEntity.ok().body(review);
     }
 
     @Operation(summary = "gets review by user")
@@ -37,7 +36,7 @@ class ReviewController {
 
         final var review = rService.findReviewsByUser(userID);
 
-        if(review == null){
+        if (review == null) {
             return ResponseEntity.notFound().build();
         }
 
@@ -46,11 +45,12 @@ class ReviewController {
 
     @Operation(summary = "creates review")
     @PostMapping("/products/{sku}/reviews")
-    public ResponseEntity<ReviewDTO> createReview(@PathVariable(value = "sku") final String sku, @RequestBody CreateReviewDTO createReviewDTO) {
+    public ResponseEntity<ReviewDTO> createReview(@PathVariable(value = "sku") final String sku,
+            @RequestBody CreateReviewDTO createReviewDTO) {
 
         final var review = rService.create(createReviewDTO, sku);
 
-        if(review == null){
+        if (review == null) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -59,11 +59,12 @@ class ReviewController {
 
     @Operation(summary = "add vote")
     @PutMapping("/reviews/{reviewID}/vote")
-    public ResponseEntity<Boolean> addVote(@PathVariable(value = "reviewID") final Long reviewID, @RequestBody VoteReviewDTO voteReviewDTO){
+    public ResponseEntity<Boolean> addVote(@PathVariable(value = "reviewID") final Long reviewID,
+            @RequestBody VoteReviewDTO voteReviewDTO) {
 
         boolean added = this.rService.addVoteToReview(reviewID, voteReviewDTO);
 
-        if(!added){
+        if (!added) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -76,16 +77,18 @@ class ReviewController {
 
         Boolean rev = rService.DeleteReview(reviewID);
 
-        if (rev == null) return ResponseEntity.notFound().build();
+        if (rev == null)
+            return ResponseEntity.notFound().build();
 
-        if (rev == false) return ResponseEntity.unprocessableEntity().build();
+        if (rev == false)
+            return ResponseEntity.unprocessableEntity().build();
 
         return ResponseEntity.ok().body(rev);
     }
 
     @Operation(summary = "gets pedding reviews")
     @GetMapping("/reviews/pending")
-    public ResponseEntity<List<ReviewDTO>> getPendingReview(){
+    public ResponseEntity<List<ReviewDTO>> getPendingReview() {
 
         List<ReviewDTO> r = rService.findPendingReview();
 
@@ -94,18 +97,24 @@ class ReviewController {
 
     @Operation(summary = "Accept or reject review")
     @PutMapping("/reviews/acceptreject/{reviewID}")
-    public ResponseEntity<ReviewDTO> putAcceptRejectReview(@PathVariable(value = "reviewID") final Long reviewID, @RequestBody String approved){
+    public ResponseEntity<ReviewDTO> putAcceptRejectReview(@PathVariable(value = "reviewID") final Long reviewID,
+            @RequestBody String approved) {
 
         try {
             ReviewDTO rev = rService.moderateReview(reviewID, approved);
 
             return ResponseEntity.ok().body(rev);
-        }
-        catch( IllegalArgumentException e ) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
-        }
-        catch( ResourceNotFoundException e ) {
+        } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @Operation(summary = "Gets reviews recommendation")
+    @GetMapping("/reviews/recommendations")
+    public ResponseEntity<List<ReviewDTO>> getReviewRecomendations() {
+        List<ReviewDTO> reviews = rService.getReviewRecommendations();
+        return ResponseEntity.ok().body(reviews);
     }
 }

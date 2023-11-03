@@ -1,4 +1,4 @@
-package com.isep.acme.schemas.sql;
+package com.isep.acme.schemas.mongo;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,30 +8,31 @@ import org.springframework.stereotype.Component;
 
 import com.isep.acme.model.Vote;
 
-@Profile("sql")
+@Profile("mongo")
 @Component
-public class VotesSqlMapper {
+public class VoteMongoMapper {
 
-    public VoteSqlSchema voteToSchema(Vote vote){
-        return new VoteSqlSchema(vote.getVote(),vote.getUserID());
+    public VoteMongoSchema voteToSchema(Vote vote){
+        return new VoteMongoSchema(vote.getVote(),vote.getUserID());
     }
 
-    public List<VoteSqlSchema> votesToSchemas(List<Vote> votes){
+    public List<VoteMongoSchema> votesToSchemas(List<Vote> votes){
         return votes
                 .stream() 
                 .map(this::voteToSchema)
                 .collect(Collectors.toList());
     }
 
-    public Vote schemaToVote(VoteSqlSchema schema) {
+    public Vote schemaToVote(VoteMongoSchema schema) {
         return new Vote(schema.getVote(), schema.getUserID());
     }
 
-    public List<Vote> schemasToVotes(List<VoteSqlSchema> schemas) {
+    public List<Vote> schemasToVotes(List<VoteMongoSchema> schemas) {
         return schemas
             .stream()
             .map(this::schemaToVote)
             .collect(Collectors.toList());
     }
+    
     
 }
