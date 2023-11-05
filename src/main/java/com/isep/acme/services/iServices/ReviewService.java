@@ -27,5 +27,5 @@ public interface ReviewService {
 
     List<ReviewDTO> findReviewsByUser(Long userID);
 
-    List<ReviewDTO> getReviewRecommendations();
+    List<ReviewDTO> getReviewRecommendations(Long userId);
 }

@@ -6,15 +6,17 @@ import org.springframework.core.io.Resource;
 import com.isep.acme.dtos.ImageDTO;
 import com.isep.acme.model.ProdImage;
 import com.isep.acme.services.iRepositories.ImageRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ImageService {
 
-    @Autowired
+    //@Autowired
     private Resource image;
-    @Autowired
+    //@Autowired
      private ProdImage id;
      @Autowired
      private FileStorageService service;

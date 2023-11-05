@@ -1,6 +1,5 @@
 package com.isep.acme.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,13 +15,12 @@ import java.util.Optional;
 
 
 @Service
-@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private final UserRepository userRepo;
+    private UserRepository userRepo;
     @Autowired
-    private final UserViewMapper userViewMapper;
+    private UserViewMapper userViewMapper;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {

@@ -22,6 +22,7 @@ public class UserBootstrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        userRepo.runConstraints();
 
         //admin
         if(userRepo.findByUsername("admin1@mail.com").isEmpty()) {

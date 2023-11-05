@@ -5,5 +5,5 @@ import java.util.List;
 import com.isep.acme.model.Review;
 
 public interface ReviewRecommendationService {
-    List<Review> getRecommendations(List<Review> allReviews);
+    List<Review> getRecommendations(List<Review> allReviews, Long userId);
 }
