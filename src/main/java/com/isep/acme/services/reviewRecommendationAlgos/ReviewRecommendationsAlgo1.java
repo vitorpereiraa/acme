@@ -1,9 +1,10 @@
-package com.isep.acme.model;
+package com.isep.acme.services.reviewRecommendationAlgos;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.isep.acme.model.Review;
 import org.springframework.stereotype.Component;
 
 import com.isep.acme.services.iServices.ReviewRecommendationService;

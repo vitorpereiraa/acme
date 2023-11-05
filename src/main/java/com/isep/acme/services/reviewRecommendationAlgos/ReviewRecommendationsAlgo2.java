@@ -1,5 +1,7 @@
-package com.isep.acme.model;
+package com.isep.acme.services.reviewRecommendationAlgos;
 
+import com.isep.acme.model.Review;
+import com.isep.acme.model.Vote;
 import com.isep.acme.services.iRepositories.ReviewRepository;
 import com.isep.acme.services.iRepositories.UserRepository;
 import com.isep.acme.services.iServices.ReviewRecommendationService;
