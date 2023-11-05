@@ -76,6 +76,11 @@ public class ProductMongoRepository implements ProductRepository {
     }
 
     @Override
+    public void runConstraints() {
+
+    }
+
+    @Override
     public Product updateBySku(String sku) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateBySku'");

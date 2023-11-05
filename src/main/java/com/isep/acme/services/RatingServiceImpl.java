@@ -10,12 +10,12 @@ import com.isep.acme.services.iServices.RatingService;
 import java.util.Optional;
 
 @Service
-public class RatingServiceImpl implements RatingService{
+public class RatingServiceImpl implements RatingService {
 
     @Autowired
     RatingRepository repository;
 
-    public Optional<Rating> findByRate(Double rate){
+    public Optional<Rating> findByRate(Double rate) {
         return repository.findByRate(rate);
     }
 

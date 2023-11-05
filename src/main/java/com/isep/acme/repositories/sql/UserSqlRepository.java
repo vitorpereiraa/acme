@@ -62,5 +62,9 @@ public class UserSqlRepository implements UserRepository {
         User user = userMapper.schemaToUser(schema.get());
         return Optional.of(user);
     }
-    
+
+    @Override
+    public void runConstraints() {
+    }
+
 }
