@@ -8,7 +8,7 @@
     </bean>
   
     <bean id="reviewRecommendationAlgorithm"
-        class="com.isep.acme.model.ReviewRecommendationsAlgo1">
+        class="com.isep.acme.services.reviewRecommendationAlgos.ReviewRecommendationsAlgo1">
     </bean>
   
 </beans>

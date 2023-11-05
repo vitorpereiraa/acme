@@ -1,9 +1,10 @@
-package com.isep.acme.model;
+package com.isep.acme.services.reviewRecommendationAlgos;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.isep.acme.model.Review;
 import org.springframework.stereotype.Component;
 
 import com.isep.acme.services.iServices.ReviewRecommendationService;
@@ -12,7 +13,7 @@ import com.isep.acme.services.iServices.ReviewRecommendationService;
 public class ReviewRecommendationsAlgo1 implements ReviewRecommendationService {
 
     @Override
-    public List<Review> getRecommendations(List<Review> allReviews) {
+    public List<Review> getRecommendations(List<Review> allReviews, Long userId) {
         Comparator<Review> reviewQtyOfUpVotesComparator = new Comparator<Review>() {
             @Override
             public int compare(Review r1, Review r2) {
